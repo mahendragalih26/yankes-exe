@@ -67,6 +67,9 @@ module.exports = (env: any) => {
       compress: true,
       port: 4000,
       historyApiFallback: true,
+      static: {
+        directory: path.join(__dirname, "./")
+      },
 
       // testing local network (diff device)
       // host: '192.168.100.28'
