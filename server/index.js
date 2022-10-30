@@ -12,6 +12,7 @@ const cors = require("cors");
 
 // File module
 const fs = require("fs");
+const db = require('./configPg')
 
 const production = process.env.NODE_ENV === "production";
 const port = process.env.PORT || 3000;
@@ -21,6 +22,7 @@ const { env } = require('process');
 
 app.use(cors());
 app.use("/", express.static(__dirname + "/assets"));
+app.use(bodyParser.json());app.use(bodyParser.urlencoded({extended: true}))
 
 // API tester
 app.get("/api", (req, res) => {
@@ -44,3 +46,10 @@ app.listen(port, () => {
     console.log("env", process.env.NODE_ENV, production);
     console.log("The application is listening on port", port);
   });
+
+  app.get("/", (request, response) => {response.json({info: 'Hello world!'});});
+  app.get("/students", db.getStudents);
+  app.get("/students/:id", db.getStudentById);
+  app.put("/students/:id", db.updateStudent);
+  app.post("/students", db.createStudent);
+  app.delete("/students/:id", db.deleteStudent);
