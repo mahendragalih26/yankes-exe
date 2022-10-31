@@ -1,0 +1,33 @@
+* {
+  box-sizing: inherit;
+  &:before,
+  &:after {
+    box-sizing: inherit;
+  }
+}
+
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Center & dribbble
+body {
+  min-height: 100vh;
+  display: flex;
+  font-family: "Inter", Arial;
+  justify-content: center;
+  align-items: center;
+  //   background: #181820;
+  .twitter {
+    position: fixed;
+    display: block;
+    right: 12px;
+    bottom: 12px;
+    svg {
+      width: 32px;
+      height: 32px;
+      fill: #1da1f2;
+    }
+  }
+}

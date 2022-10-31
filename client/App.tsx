@@ -7,14 +7,11 @@ import React, { useEffect, useState, ReactElement, ReactNode } from "react";
 //-------------------------------------------------
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import { authenticationService } from "./services/authentication.service";
 import { connect } from "react-redux";
-// import { Auth, Tokens } from "./helper/initState";
-// import RouteConfig from "./RouteConfig";
 import SplashScreen from "./components/loadings/SplashScreen";
-import e from "express";
 
 // Import Page
+const NotFound = React.lazy(() => import("./components/layout/notfound"));
 const Review = React.lazy(() => import("./page/review"));
 
 interface Props {
@@ -39,13 +36,6 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const App: React.FC<Props> = ({}) => {
-  const [isLocalForageChecked, setIsLocalForageChecked] =
-    useState<boolean>(false);
-  // const delay = 60; // in second (call expired API)
-  const [counterExpired, setCounterExpired] = useState<number>(0);
-  const [isMultipleArea, setIsMultipleArea] = useState<boolean>(true);
-  const [changeRouteStatus, setChangeRouteStatus] = useState<any>("");
-
   useEffect(() => {
     //untuk error loading chunk failed
     console.error = (error) => {
@@ -88,7 +78,8 @@ const App: React.FC<Props> = ({}) => {
       <Router>
         <React.Suspense fallback={<SplashScreen />}>
           <Routes>
-              <Route path='/' element={<Review/>} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="/" element={<Review />} />
           </Routes>
         </React.Suspense>
       </Router>
