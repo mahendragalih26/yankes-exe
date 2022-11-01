@@ -30,8 +30,8 @@
       border: none;
       display: block;
       position: absolute;
-      width: 40px;
-      height: 40px;
+      width: 120px;
+      height: 120px;
       left: 0;
       top: 0;
       margin: 0;
@@ -44,10 +44,10 @@
       -webkit-tap-highlight-color: transparent;
     }
     div {
-      width: 40px;
-      height: 40px;
+      width: 120px;
+      height: 120px;
       position: relative;
-      transform: perspective(240px) translateZ(4px);
+      transform: perspective(720px) translateZ(4px);
       svg,
       &:before,
       &:after {
@@ -68,19 +68,19 @@
         transition: stroke 0.4s;
         &.eye {
           --s: var(--e, var(--normal-eye));
-          --t: 17px;
-          --w: 7px;
-          --h: 4px;
+          --t: 51px;
+          --w: 70px;
+          --h: 14px;
           &.right {
-            --l: 23px;
+            --l: 36px;
           }
         }
         &.mouth {
           --s: var(--m, var(--normal-mouth));
-          --l: 11px;
-          --t: 23px;
-          --w: 18px;
-          --h: 7px;
+          --l: 43px;
+          --t: 68px;
+          --w: 31px;
+          --h: 34px;
         }
       }
       &:before,
@@ -99,11 +99,18 @@
       --step-2-ry: -20deg;
       div {
         &:before {
-          --r: 20deg;
+          --r: 32deg;
+          --l: 23px;
+          --t: 27px;
+          --w: 25px;
+          --h: 4px;
         }
         &:after {
-          --l: 23px;
-          --r: -20deg;
+          --r: -32deg;
+          --l: 64px;
+          --t: 27px;
+          --w: 25px;
+          --h: 4px;
         }
         svg {
           &.eye {
@@ -140,20 +147,21 @@
         &:after {
           --b: var(--active-tear);
           --sc: 0;
-          --w: 5px;
-          --h: 5px;
-          --t: 15px;
+          --w: 8px;
+          --h: 20px;
+          --t: 50px;
+          --l: 28px;
           --br: 50%;
         }
         &:after {
-          --l: 25px;
+          --l: 78px;
         }
         svg {
           &.eye {
-            --t: 16px;
+            --t: 51px;
           }
           &.mouth {
-            --t: 24px;
+            --t: 66px;
             stroke-dasharray: 9.5;
             stroke-dashoffset: 33.25;
           }
@@ -327,17 +335,17 @@
 
 @keyframes shake {
   30% {
-    transform: perspective(240px) rotateX(var(--step-1-rx, 0deg))
+    transform: perspective(720px) rotateX(var(--step-1-rx, 0deg))
       rotateY(var(--step-1-ry, 0deg)) rotateZ(var(--step-1-rz, 0deg))
       translateZ(10px);
   }
   60% {
-    transform: perspective(240px) rotateX(var(--step-2-rx, 0deg))
+    transform: perspective(720px) rotateX(var(--step-2-rx, 0deg))
       rotateY(var(--step-2-ry, 0deg)) rotateZ(var(--step-2-rz, 0deg))
       translateZ(10px);
   }
   100% {
-    transform: perspective(240px) translateZ(4px);
+    transform: perspective(720px) translateZ(4px);
   }
 }
 
