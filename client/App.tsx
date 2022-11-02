@@ -13,6 +13,8 @@ import SplashScreen from "./components/loadings/SplashScreen";
 // Import Page
 const NotFound = React.lazy(() => import("./components/layout/notfound"));
 const Review = React.lazy(() => import("./page/review"));
+const Thumbs = React.lazy(() => import("./page/review/thumbs"));
+const Emote = React.lazy(() => import("./page/review/emote"));
 
 interface Props {
   // addAuth: (data: Auth) => void;
@@ -80,6 +82,8 @@ const App: React.FC<Props> = ({}) => {
           <Routes>
             <Route path="*" element={<NotFound />} />
             <Route path="/" element={<Review />} />
+            <Route path="/thumbs" element={<Thumbs />} />
+            <Route path="/emote" element={<Emote />} />
           </Routes>
         </React.Suspense>
       </Router>
