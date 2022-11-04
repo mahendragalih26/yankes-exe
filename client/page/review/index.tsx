@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 
 // Layout
 import ContainerLayout from "../../components/layout/containerLayout";
+import HeaderApp from "../../components/layout/header";
 
 // Import Service
 import { reviewService } from "../../services/review";
@@ -47,102 +48,108 @@ export default function VerticalDividerText() {
   };
 
   return (
-    <ContainerLayout>
-      <Box sx={{ width: "100%", maxWidth: 500, margin: "auto" }}>
-        <Typography variant="h3" gutterBottom align="center">
-          Bagaimana dengan Pelayanan Kami ?
-        </Typography>
-      </Box>
-      <Divider flexItem />
-      <Grid container>
-        <Grid
-          item
-          xs
-          onClick={() => {
-            handleInput({ rate: "1" });
-          }}
-          className="px-7em"
+    <React.Fragment>
+      <HeaderApp />
+      <ContainerLayout>
+        <Box
+          sx={{ width: "100%", maxWidth: 500, margin: "auto" }}
+          className={"mt-10"}
         >
-          <Box sx={{ width: "100%", maxWidth: 400, margin: "auto" }}>
-            <Typography variant="h4" gutterBottom align="center">
-              Kurang
-            </Typography>
-          </Box>
-          <div className="feedback">
-            <label className="angry">
-              <input
-                type="radio"
-                value="1"
-                name="feedback"
-                checked={formats === "1"}
-              />
-              <div>
-                <svg className="eye left">
-                  <use xlinkHref="#eye" />
-                </svg>
-                <svg className="eye right">
-                  <use xlinkHref="#eye" />
-                </svg>
-                <svg className="mouth">
-                  <use xlinkHref="#mouth" />
-                </svg>
-              </div>
-            </label>
-          </div>
+          <Typography variant="h3" gutterBottom align="center">
+            Bagaimana dengan Pelayanan Kami ?
+          </Typography>
+        </Box>
+        <Divider flexItem />
+        <Grid container>
+          <Grid
+            item
+            xs
+            onClick={() => {
+              handleInput({ rate: "1" });
+            }}
+            className="px-7em"
+          >
+            <Box sx={{ width: "100%", maxWidth: 400, margin: "auto" }}>
+              <Typography variant="h4" gutterBottom align="center">
+                Kurang
+              </Typography>
+            </Box>
+            <div className="feedback">
+              <label className="angry">
+                <input
+                  type="radio"
+                  value="1"
+                  name="feedback"
+                  checked={formats === "1"}
+                />
+                <div>
+                  <svg className="eye left">
+                    <use xlinkHref="#eye" />
+                  </svg>
+                  <svg className="eye right">
+                    <use xlinkHref="#eye" />
+                  </svg>
+                  <svg className="mouth">
+                    <use xlinkHref="#mouth" />
+                  </svg>
+                </div>
+              </label>
+            </div>
+          </Grid>
+          <Divider orientation="vertical" flexItem className="px-7em">
+            Pilih salah Satu
+          </Divider>
+          <Grid
+            item
+            xs
+            onClick={() => {
+              handleInput({ rate: "5" });
+            }}
+            className="px-7em"
+          >
+            <Box sx={{ width: "100%", maxWidth: 400, margin: "auto" }}>
+              <Typography variant="h4" gutterBottom align="center">
+                Sangat Puas
+              </Typography>
+            </Box>
+            <div className="feedback">
+              <label className="good">
+                <input
+                  type="radio"
+                  value="5"
+                  name="feedback"
+                  checked={formats === "5"}
+                />
+                <div>
+                  <svg className="eye left">
+                    <use xlinkHref="#eye" />
+                  </svg>
+                  <svg className="eye right">
+                    <use xlinkHref="#eye" />
+                  </svg>
+                  <svg className="mouth">
+                    <use xlinkHref="#mouth" />
+                  </svg>
+                </div>
+              </label>
+            </div>
+          </Grid>
         </Grid>
-        <Divider orientation="vertical" flexItem className="px-7em">
-          Pilih salah Satu
-        </Divider>
-        <Grid
-          item
-          xs
-          onClick={() => {
-            handleInput({ rate: "5" });
-          }}
-          className="px-7em"
-        >
-          <Box sx={{ width: "100%", maxWidth: 400, margin: "auto" }}>
-            <Typography variant="h4" gutterBottom align="center">
-              Sangat Puas
-            </Typography>
-          </Box>
-          <div className="feedback">
-            <label className="good">
-              <input
-                type="radio"
-                value="5"
-                name="feedback"
-                checked={formats === "5"}
-              />
-              <div>
-                <svg className="eye left">
-                  <use xlinkHref="#eye" />
-                </svg>
-                <svg className="eye right">
-                  <use xlinkHref="#eye" />
-                </svg>
-                <svg className="mouth">
-                  <use xlinkHref="#mouth" />
-                </svg>
-              </div>
-            </label>
-          </div>
-        </Grid>
-      </Grid>
 
-      {/* Eye and mouth function */}
-      <svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
-        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
-          <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
-        </symbol>
-        <symbol
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 18 7"
-          id="mouth"
-        >
-          <path d="M1,5.5 C3.66666667,2.5 6.33333333,1 9,1 C11.6666667,1 14.3333333,2.5 17,5.5"></path>
-        </symbol>
-      </svg>
-    </ContainerLayout>
+        {/* Eye and mouth function */}
+        <svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
+          <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+            <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+          </symbol>
+          <symbol
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 18 7"
+            id="mouth"
+          >
+            <path d="M1,5.5 C3.66666667,2.5 6.33333333,1 9,1 C11.6666667,1 14.3333333,2.5 17,5.5"></path>
+          </symbol>
+        </svg>
+      </ContainerLayout>
+    </React.Fragment>
   );
 }
