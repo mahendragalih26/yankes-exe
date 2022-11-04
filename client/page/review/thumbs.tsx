@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const ReviewPage = () => {
-  const [value, valueSet] = useState < string > "1";
+  // const [value, valueSet] = useState < string > "1";
 
   return (
     <div className="container mx-auto my-4 px-4">

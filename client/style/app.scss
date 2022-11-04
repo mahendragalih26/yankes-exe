@@ -1,6 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
 
 @import "./components/emote.scss";
+@import "./components/notfound.scss";
 @import "./base/index.scss";
+@import "./base/utilities.scss";

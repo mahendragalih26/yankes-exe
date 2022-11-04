@@ -17,6 +17,7 @@
   padding: 0;
   list-style: none;
   display: flex;
+  justify-content: center;
   label {
     position: relative;
     transition: transform 0.3s;
@@ -226,13 +227,14 @@
       div {
         &:before {
           --b: var(--m, var(--normal-mouth));
-          --w: 5px;
-          --h: 5px;
+          --w: 21px;
+          --h: 8px;
           --br: 50%;
-          --t: 22px;
+          --t: 53px;
           --zi: 0;
+          --l: 22px;
           opacity: 0.5;
-          box-shadow: 16px 0 0 var(--b);
+          box-shadow: 49px 0 0 var(--b);
           filter: blur(2px);
         }
         &:after {
@@ -240,13 +242,13 @@
         }
         svg {
           &.eye {
-            --t: 15px;
+            --t: 45px;
             --sc: -1;
             stroke-dasharray: 4.55;
             stroke-dashoffset: 8.15;
           }
           &.mouth {
-            --t: 22px;
+            --t: 58px;
             --sc: -1;
             stroke-dasharray: 13.3;
             stroke-dashoffset: 23.75;
@@ -278,15 +280,14 @@
         }
         &:after {
           --b: var(--m, var(--normal-mouth));
-          --l: 11px;
-          --t: 23px;
-          --w: 18px;
-          --h: 8px;
-          --br: 0 0 8px 8px;
+          --l: 44px;
+          --t: 75px;
+          --w: 29px;
+          --h: 11px;
         }
         svg {
           &.eye {
-            --t: 14px;
+            --t: 46px;
             --sc: -1;
           }
         }

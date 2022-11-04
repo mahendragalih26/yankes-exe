@@ -1,122 +1,142 @@
 import React, { useState, useEffect } from "react";
 
-const ReviewPage = () => {
-  const [value, valueSet] = useState<string>("1");
+// MUI
+import { styled } from "@mui/material/styles";
+import MuiGrid from "@mui/material/Grid";
+import Divider from "@mui/material/Divider";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+
+// Layout
+import ContainerLayout from "../../components/layout/containerLayout";
+import HeaderApp from "../../components/layout/header";
+
+// Import Service
+import { reviewService } from "../../services/review";
+
+const Grid = styled(MuiGrid)(({ theme }) => ({
+  width: "100%",
+  ...theme.typography.body2,
+  '& [role="separator"]': {
+    margin: theme.spacing(0, 2),
+  },
+}));
+
+export default function VerticalDividerText() {
+  const [formats, setFormats] = useState<string | null>("1");
+  const [count, setCount] = useState<number | null>(0);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCount((v: any) => v + 1);
+  //   }, 1000);
+
+  //   return () => clearInterval(interval);
+  // }, []);
+
+  const handleInput = async ({ rate }: { rate: string }) => {
+    setFormats(rate);
+    let number = Number(rate);
+    await reviewService
+      .postReview({ rate: number })
+      .then((res: any) => {
+        console.log(res);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  };
 
   return (
-    <div className="container mx-auto my-4 px-4">
-      {/* Emote 2 */}
-      <div className="flex justify-around">
-        <div className="feedback">
-          <label
-            className="angry"
+    <React.Fragment>
+      <HeaderApp />
+      <ContainerLayout>
+        <Box
+          sx={{ width: "100%", maxWidth: 500, margin: "auto" }}
+          className={"mt-10"}
+        >
+          <Typography variant="h3" gutterBottom align="center">
+            Bagaimana dengan Pelayanan Kami ?
+          </Typography>
+        </Box>
+        <Divider flexItem />
+        <Grid container>
+          <Grid
+            item
+            xs
             onClick={() => {
-              valueSet("1");
+              handleInput({ rate: "1" });
             }}
+            className="px-7em"
           >
-            <input
-              type="radio"
-              value="1"
-              name="feedback"
-              checked={value === "1"}
-            />
-            <div>
-              <svg className="eye left">
-                <use xlinkHref="#eye" />
-              </svg>
-              <svg className="eye right">
-                <use xlinkHref="#eye" />
-              </svg>
-              <svg className="mouth">
-                <use xlinkHref="#mouth" />
-              </svg>
+            <Box sx={{ width: "100%", maxWidth: 400, margin: "auto" }}>
+              <Typography variant="h4" gutterBottom align="center">
+                Kurang
+              </Typography>
+            </Box>
+            <div className="feedback">
+              <label className="angry">
+                <input
+                  type="radio"
+                  value="1"
+                  name="feedback"
+                  checked={formats === "1"}
+                />
+                <div>
+                  <svg className="eye left">
+                    <use xlinkHref="#eye" />
+                  </svg>
+                  <svg className="eye right">
+                    <use xlinkHref="#eye" />
+                  </svg>
+                  <svg className="mouth">
+                    <use xlinkHref="#mouth" />
+                  </svg>
+                </div>
+              </label>
             </div>
-          </label>
-          <label
-            className="sad"
+          </Grid>
+          <Divider orientation="vertical" flexItem className="px-7em">
+            Pilih salah Satu
+          </Divider>
+          <Grid
+            item
+            xs
             onClick={() => {
-              valueSet("2");
+              handleInput({ rate: "5" });
             }}
+            className="px-7em"
           >
-            <input
-              type="radio"
-              value="2"
-              name="feedback"
-              checked={value === "2"}
-            />
-            <div>
-              <svg className="eye left">
-                <use xlinkHref="#eye" />
-              </svg>
-              <svg className="eye right">
-                <use xlinkHref="#eye" />
-              </svg>
-              <svg className="mouth">
-                <use xlinkHref="#mouth" />
-              </svg>
+            <Box sx={{ width: "100%", maxWidth: 400, margin: "auto" }}>
+              <Typography variant="h4" gutterBottom align="center">
+                Sangat Puas
+              </Typography>
+            </Box>
+            <div className="feedback">
+              <label className="good">
+                <input
+                  type="radio"
+                  value="5"
+                  name="feedback"
+                  checked={formats === "5"}
+                />
+                <div>
+                  <svg className="eye left">
+                    <use xlinkHref="#eye" />
+                  </svg>
+                  <svg className="eye right">
+                    <use xlinkHref="#eye" />
+                  </svg>
+                  <svg className="mouth">
+                    <use xlinkHref="#mouth" />
+                  </svg>
+                </div>
+              </label>
             </div>
-          </label>
-          <label
-            className="ok"
-            onClick={() => {
-              valueSet("3");
-            }}
-          >
-            <input
-              type="radio"
-              value="3"
-              name="feedback"
-              checked={value === "3"}
-            />
-            <div></div>
-          </label>
-          <label
-            className="good"
-            onClick={() => {
-              valueSet("4");
-            }}
-          >
-            <input
-              type="radio"
-              value="4"
-              name="feedback"
-              checked={value === "4"}
-            />
-            <div>
-              <svg className="eye left">
-                <use xlinkHref="#eye" />
-              </svg>
-              <svg className="eye right">
-                <use xlinkHref="#eye" />
-              </svg>
-              <svg className="mouth">
-                <use xlinkHref="#mouth" />
-              </svg>
-            </div>
-          </label>
-          <label
-            className="happy"
-            onClick={() => {
-              valueSet("5");
-            }}
-          >
-            <input
-              type="radio"
-              value="5"
-              name="feedback"
-              checked={value === "5"}
-            />
-            <div>
-              <svg className="eye left">
-                <use xlinkHref="#eye" />
-              </svg>
-              <svg className="eye right">
-                <use xlinkHref="#eye" />
-              </svg>
-            </div>
-          </label>
-        </div>
+          </Grid>
+        </Grid>
 
+        {/* Eye and mouth function */}
         <svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
           <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
             <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
@@ -129,25 +149,7 @@ const ReviewPage = () => {
             <path d="M1,5.5 C3.66666667,2.5 6.33333333,1 9,1 C11.6666667,1 14.3333333,2.5 17,5.5"></path>
           </symbol>
         </svg>
-
-        {/* twitter */}
-        {/* <a
-          className="twitter"
-          target="_top"
-          href="https://twitter.com/aaroniker_me"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="72"
-            height="72"
-            viewBox="0 0 72 72"
-          >
-            <path d="M67.812 16.141a26.246 26.246 0 0 1-7.519 2.06 13.134 13.134 0 0 0 5.756-7.244 26.127 26.127 0 0 1-8.313 3.176A13.075 13.075 0 0 0 48.182 10c-7.229 0-13.092 5.861-13.092 13.093 0 1.026.118 2.021.338 2.981-10.885-.548-20.528-5.757-26.987-13.679a13.048 13.048 0 0 0-1.771 6.581c0 4.542 2.312 8.551 5.824 10.898a13.048 13.048 0 0 1-5.93-1.638c-.002.055-.002.11-.002.162 0 6.345 4.513 11.638 10.504 12.84a13.177 13.177 0 0 1-3.449.457c-.846 0-1.667-.078-2.465-.231 1.667 5.2 6.499 8.986 12.23 9.09a26.276 26.276 0 0 1-16.26 5.606A26.21 26.21 0 0 1 4 55.976a37.036 37.036 0 0 0 20.067 5.882c24.083 0 37.251-19.949 37.251-37.249 0-.566-.014-1.134-.039-1.694a26.597 26.597 0 0 0 6.533-6.774z"></path>
-          </svg>
-        </a> */}
-      </div>
-    </div>
+      </ContainerLayout>
+    </React.Fragment>
   );
-};
-
-export default ReviewPage;
+}
