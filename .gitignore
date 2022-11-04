@@ -41,8 +41,8 @@ build/Release
 node_modules/
 jspm_packages/
 k8s/
-Dockerfile
-Jenkinsfile
+# Dockerfile
+# Jenkinsfile
 
 # TypeScript v1 declaration files
 typings/
