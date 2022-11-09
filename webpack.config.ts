@@ -71,13 +71,13 @@ module.exports = (env: any) => {
           }),
         ],
     devServer: {
-      contentBase: path.join(__dirname),
+      // contentBase: path.join(__dirname),
       compress: true,
       port: 4000,
       historyApiFallback: true,
-      // static: {
-      //   directory: path.join(__dirname, "./"),
-      // },
+      static: {
+        directory: path.join(__dirname, "./"),
+      },
 
       // testing local network (diff device)
       // host: '192.168.100.28'
