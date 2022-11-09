@@ -5,6 +5,7 @@ const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const isAnalyze = typeof process.env.BUNDLE_ANALYZE !== "undefined";
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = (env: any) => {
   console.log(env);
   return {
@@ -72,12 +73,13 @@ module.exports = (env: any) => {
         ],
     devServer: {
       // contentBase: path.join(__dirname),
+      contentBase: "./build",
       compress: true,
       port: 4000,
       historyApiFallback: true,
-      static: {
-        directory: path.join(__dirname, "./"),
-      },
+      // static: {
+      //   directory: path.join(__dirname, "./"),
+      // },
 
       // testing local network (diff device)
       // host: '192.168.100.28'
