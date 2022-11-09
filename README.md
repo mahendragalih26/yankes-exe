@@ -1,3 +1,6 @@
+# Status Deploy
+[![Netlify Status](https://api.netlify.com/api/v1/badges/791d7938-07ea-4286-a0ee-772cc34e8d5c/deploy-status)](https://app.netlify.com/sites/yankes-app/deploys)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
