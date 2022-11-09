@@ -1,0 +1,143 @@
+#nprogress .bar {
+  background: green;
+  height: 3px;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: green;
+  border-left-color: green;
+}
+.MuiStepper-vertical {
+  padding: 2em 0 1em 0 !important;
+  margin-left: -5px;
+  svg.MuiStepIcon-root.MuiStepIcon-active {
+    color: red !important;
+    .MuiStepIcon-text {
+      fill: red !important;
+    }
+  }
+  .MuiSvgIcon-root {
+    height: 14px;
+  }
+}
+.MuiContainer-maxWidthMd {
+  max-width: 1100px !important;
+}
+.MuiOutlinedInput-input {
+  padding: 13px 14px !important;
+}
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: $primary-color !important;
+}
+.MuiOutlinedInput-root {
+  height: 45px !important;
+}
+.MuiListItem-root:hover {
+  background-color: rgba($color: $primary-color, $alpha: 0.8) !important;
+  color: white;
+}
+.MuiListItemIcon-root:hover {
+  color: white !important;
+}
+.MuiInputLabel-outlined.MuiInputLabel-shrink {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding-right: 5px;
+  white-space: nowrap;
+}
+.custom-shrink-border--label span,
+.MuiInputLabel-outlined.MuiInputLabel-shrink {
+  &::before {
+    font-family: "Material Icons";
+    color: $glight-color !important;
+    content: "\ef4a";
+    font-size: 10px;
+    margin: auto;
+    margin-right: 2px;
+  }
+
+  &.Mui-error::before {
+    color: $red !important;
+  }
+}
+
+.MuiAutocomplete-input {
+  padding: 0 !important;
+}
+.MuiAutocomplete-inputRoot {
+  padding: 9px 14px !important;
+}
+.MuiInputBase-input,
+.MuiFormControlLabel-label,
+.MuiMenuItem-root {
+  font-size: 13px !important;
+}
+.MuiButton-root {
+  min-height: 40px;
+}
+.MuiSwitch-root {
+  margin-right: -8px;
+  padding: 8px !important;
+  .MuiSwitch-track {
+    border-radius: 11px !important;
+  }
+}
+.MuiInputBase-root.Mui-disabled,
+.disabled {
+  color: black !important;
+  cursor: default !important;
+  background-color: #f3f3f3 !important;
+}
+.MuiStepper-alternativeLabel {
+  max-width: calc(100% - 170px - 270px);
+}
+.checkbox.MuiFormControl-marginDense {
+  margin-top: -20px;
+}
+.MuiInputBase-multiline {
+  height: auto !important;
+  padding: 0 !important;
+}
+.MuiAccordionSummary-content {
+  padding: 2em 1.5em !important;
+  margin: 0 !important;
+}
+.MuiAccordionSummary-root.Mui-expanded {
+  border: 1px solid #ddd;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+.MuiTable-root {
+  overflow-x: auto;
+}
+.MuiButton-outlinedPrimary {
+  color: $blue-2 !important;
+  border: 1px solid $blue-2 !important;
+}
+.MuiButton-containedPrimary {
+  background-color: $blue-2 !important;
+}
+.MuiStepConnector-lineVertical {
+  min-height: 30px !important;
+}
+.MuiStepLabel-vertical {
+  .MuiStepLabel-labelContainer {
+    position: relative;
+  }
+  .MuiStepLabel-label {
+    position: absolute;
+    width: 100%;
+  }
+}
+.MuiFab-primary {
+  color: $white-color;
+  background-color: $primary-color !important;
+}
+
+.MuiFab-secondary {
+  color: $white-color;
+  background-color: $danger-color !important;
+  &:hover {
+    background-color: #bc1a21 !important;
+  }
+}

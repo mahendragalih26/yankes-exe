@@ -3,6 +3,7 @@ const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const isAnalyze = typeof process.env.BUNDLE_ANALYZE !== "undefined";
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = (env: any) => {

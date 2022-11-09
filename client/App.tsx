@@ -15,6 +15,7 @@ const NotFound = React.lazy(() => import("./components/layout/notfound"));
 const Review = React.lazy(() => import("./page/review"));
 const Thumbs = React.lazy(() => import("./page/review/thumbs"));
 const Emote = React.lazy(() => import("./page/review/emote"));
+const CardEmote = React.lazy(() => import("./page/review/cardEmote"));
 
 interface Props {
   // addAuth: (data: Auth) => void;
@@ -81,9 +82,11 @@ const App: React.FC<Props> = ({}) => {
         <React.Suspense fallback={<SplashScreen />}>
           <Routes>
             <Route path="*" element={<NotFound />} />
-            <Route path="/" element={<Review />} />
+            {/* <Route path="/" element={<Review />} /> */}
+            <Route path="/" element={<CardEmote />} />
             <Route path="/thumbs" element={<Thumbs />} />
             <Route path="/emote" element={<Emote />} />
+            <Route path="/cardemote" element={<CardEmote />} />
           </Routes>
         </React.Suspense>
       </Router>

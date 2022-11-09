@@ -1,18 +1,22 @@
-FROM node:16.18.0-buster AS build
+FROM node:14
+
 WORKDIR /app
 
-COPY package.json package.json
-COPY package-lock.json package-lock.json
-RUN npm ci
+COPY package.json package-lock.json ./
+
+RUN npm uninstall -g phantomjs
+
+RUN npm install phantomjs
+
+# RUN rm -rf /app/node_modules/node-sass
+
+RUN npm install --production
+
+# RUN npm install
+
+COPY . .
 
 EXPOSE 3000
 
-# COPY public/ public
-# COPY src/ src
 RUN npm run build
-
-FROM httpd:alpine
-WORKDIR /usr/local/apache2/htdocs
-COPY --from=build /build/build/ .
-RUN chown -R www-data:www-data /usr/local/apache2/htdocs \
-    && sed -i "s/Listen 80/Listen \${PORT}/g" /usr/local/apache2/conf/httpd.conf
+CMD npm start

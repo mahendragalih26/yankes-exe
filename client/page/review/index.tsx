@@ -67,7 +67,7 @@ export default function VerticalDividerText() {
             onClick={() => {
               handleInput({ rate: "1" });
             }}
-            className="px-7em"
+            className="py-7em"
           >
             <Box sx={{ width: "100%", maxWidth: 400, margin: "auto" }}>
               <Typography variant="h4" gutterBottom align="center">
@@ -96,7 +96,7 @@ export default function VerticalDividerText() {
               </label>
             </div>
           </Grid>
-          <Divider orientation="vertical" flexItem className="px-7em">
+          <Divider orientation="vertical" flexItem className="py-7em">
             Pilih salah Satu
           </Divider>
           <Grid
@@ -105,7 +105,7 @@ export default function VerticalDividerText() {
             onClick={() => {
               handleInput({ rate: "5" });
             }}
-            className="px-7em"
+            className="py-7em"
           >
             <Box sx={{ width: "100%", maxWidth: 400, margin: "auto" }}>
               <Typography variant="h4" gutterBottom align="center">

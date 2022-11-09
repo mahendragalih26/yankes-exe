@@ -46,7 +46,7 @@ function HeaderApp() {
   const matches = useMediaQuery("(min-width:900px)");
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" color="transparent">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
@@ -59,12 +59,12 @@ function HeaderApp() {
               // style={{ display: !matches ? "none" : "" }}
             />
           </div>
-          <Stack spacing={0.5}>
+          {/* <Stack spacing={0.5}>
             <Typography fontWeight={700}>KLINIK POLRES</Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="desc" color="text.secondary">
               MALANG KOTA
             </Typography>
-          </Stack>
+          </Stack> */}
           {/* </Stack> */}
           {/* <Typography
             variant="h6"
@@ -103,7 +103,7 @@ function HeaderApp() {
             width="40px"
             style={{ display: matches ? "none" : "" }}
           /> */}
-          <Typography
+          {/* <Typography
             variant="h5"
             noWrap
             component="a"
@@ -120,7 +120,7 @@ function HeaderApp() {
             }}
           >
             Klinik Polres Malang Kota
-          </Typography>
+          </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {/* {pages.map((page) => (
               <Button
@@ -133,7 +133,7 @@ function HeaderApp() {
             ))} */}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          {/* <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -161,7 +161,7 @@ function HeaderApp() {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
         </Toolbar>
       </Container>
     </AppBar>
