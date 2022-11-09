@@ -82,7 +82,8 @@ const App: React.FC<Props> = ({}) => {
         <React.Suspense fallback={<SplashScreen />}>
           <Routes>
             <Route path="*" element={<NotFound />} />
-            <Route path="/" element={<Review />} />
+            {/* <Route path="/" element={<Review />} /> */}
+            <Route path="/" element={<CardEmote />} />
             <Route path="/thumbs" element={<Thumbs />} />
             <Route path="/emote" element={<Emote />} />
             <Route path="/cardemote" element={<CardEmote />} />
