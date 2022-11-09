@@ -1,44 +1,95 @@
+// def getHost(){
+//     def remote = [:]
+//     remote.name = 'automation'
+//     remote.host = '128.21.24.61'
+//     remote.user = 'administrator'
+//     remote.port = 22
+//     remote.password = 'P@ssw0rd'
+//     remote.allowAnyHosts = true
+//     return remote
+// }
+
 pipeline {
-  agent any
-  options {
-    buildDiscarder(logRotator(numToKeepStr: '5'))
-  }
-  environment {
-    HEROKU_API_KEY = credentials('heroku-api-key')
-    IMAGE_NAME = 'mahendragalih26/yankes-app'
-    IMAGE_TAG = 'latest'
-    APP_NAME = 'yankes-app'
-  }
-  stages {
-    stage('Build') {
-      steps {
-        sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
+    agent any
+      environment {
+           PIPELINE_BUILD_IMAGE = "web-yankes"
+           PIPELINE_NAME_SPACE = "orion"
+          //  PIPELINE_REPLICA = 1
+          //  PIPELINE_LOAD_BALANCER_IP= "128.21.36.75"
+          //  PIPELINE_LOAD_BALANCER_PORT=9092
+          //  PIPELINE_EUREKA_SERVICE_ADDRESS = "http://eureka-0.eureka.cosmos.svc.cluster.local:8080/eureka,http://eureka-1.eureka.cosmos.svc.cluster.local:8080/eureka,http://eureka-2.eureka.cosmos.svc.cluster.local:8080/eureka,http://eureka-3.eureka.cosmos.svc.cluster.local:8080/eureka,http://eureka-4.eureka.cosmos.svc.cluster.local:8080/eureka,http://eureka-5.eureka.cosmos.svc.cluster.local:8080/eureka"
+          //  PIPELINE_IMAGE = "128.21.24.60:8087/${env.PIPELINE_NAME_SPACE}/${env.PIPELINE_BUILD_IMAGE}:${env.BUILD_NUMBER}"
+           def server = ''
+           def name_space = "${env.PIPELINE_NAME_SPACE}"
+           def build_image = "${env.PIPELINE_BUILD_IMAGE}"
+           def latestTag = sh(returnStdout:  true, script: "git tag --sort=-creatordate | head -n 1").trim()
       }
-    }
-    stage('Login') {
-      steps {
-        sh 'echo $HEROKU_API_KEY | docker login --username=_ --password-stdin registry.heroku.com'
+
+    stages {
+        stage('Checkout') {
+            steps {
+                script {                 
+                   server = getHost()                                   
+                }
+
+        		checkout([
+                        $class                           : 'GitSCM',
+                        branches                         : [[name: "refs/tags/${latestTag}"]],
+                        userRemoteConfigs                : [[credentialsId: 'gitcredentialadmin', url: 'https://github.com/mahendragalih26/yankes-app']],
+                        doGenerateSubmoduleConfigurations: false
+                ])
+            }
+		}
+        
+      stage('build') {
+            steps {
+              sh "echo 'No build this is node js' "
+           }
       }
-    }
-    stage('Push to Heroku registry') {
-      steps {
-        sh '''
-          docker tag $IMAGE_NAME:$IMAGE_TAG registry.heroku.com/$APP_NAME/web
-          docker push registry.heroku.com/$APP_NAME/web
-        '''
+           
+     stage('dockerized') {
+            steps{
+                echo "Build Docker images ${env.PIPELINE_BUILD_IMAGE}"
+                sh "docker build -t ${env.PIPELINE_BUILD_IMAGE} ."
+              
+            }
+ 
       }
+    stage('Deploy To Docker Registry') {
+            steps {
+                echo "Docker Image Tag Name: ${env.PIPELINE_BUILD_IMAGE}"
+                sh "docker tag ${env.PIPELINE_BUILD_IMAGE} ${env.PIPELINE_IMAGE}"
+                sh "docker push ${env.PIPELINE_IMAGE}"
+           }
+           
+
     }
-    stage('Release the image') {
-      steps {
-        sh '''
-          heroku container:release web --app=$APP_NAME
-        '''
-      }
+    
+    stage("replace Env"){
+        steps{
+        	sh "printenv"
+            echo "replace env"
+            sh "ls k8s/"
+            sh "envsubst < k8s/deployment.yaml > k8s/deployment${PIPELINE_NAME_SPACE}${PIPELINE_BUILD_IMAGE}.yaml "
+            sh "cat k8s/deployment${PIPELINE_NAME_SPACE}${PIPELINE_BUILD_IMAGE}.yaml"            
+            
+            sh "pwd"
+              
+        }
     }
-  }
-  post {
-    always {
-      sh 'docker logout'
+    
+    stage('deploy to kubernetes') {
+            steps {
+                sh "ls"
+                //  script {
+                //    sshPut remote: server, from: "k8s/deployment${name_space}${build_image}.yaml", into: '.'
+                //    sshCommand remote: server, command: "kubectl apply -f deployment${name_space}${build_image}.yaml;kubectl -n ${name_space} rollout status deployment.app/${build_image}"
+                //   }
+                 sh "docker rmi -f ${env.PIPELINE_IMAGE}"
+           }
+           
+
     }
-  }
+    
+}
 }
