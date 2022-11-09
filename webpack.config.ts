@@ -3,6 +3,7 @@ const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const isAnalyze = typeof process.env.BUNDLE_ANALYZE !== "undefined";
 module.exports = (env: any) => {
   console.log(env);
@@ -51,6 +52,9 @@ module.exports = (env: any) => {
     },
     plugins: isAnalyze
       ? [
+          new HtmlWebpackPlugin({
+            template: path.resolve("./index.html"),
+          }),
           new BundleAnalyzerPlugin(),
           new NodePolyfillPlugin(),
           new MomentLocalesPlugin({
@@ -58,6 +62,9 @@ module.exports = (env: any) => {
           }),
         ]
       : [
+          new HtmlWebpackPlugin({
+            template: path.resolve("./index.html"),
+          }),
           new NodePolyfillPlugin(),
           new MomentLocalesPlugin({
             localesToKeep: ["en-sg", "id"],
