@@ -4,9 +4,9 @@ WORKDIR /app
 
 COPY package.json package-lock.json ./
 
-RUN npm uninstall -g phantomjs
+# RUN npm uninstall -g phantomjs
 
-RUN npm install phantomjs
+# RUN npm install phantomjs
 
 # RUN rm -rf /app/node_modules/node-sass
 
