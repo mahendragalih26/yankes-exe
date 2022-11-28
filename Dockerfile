@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package.json package-lock.json ./
 
-# RUN npm uninstall -g phantomjs
+RUN npm uninstall -g phantomjs
 
 # RUN npm install phantomjs
 
